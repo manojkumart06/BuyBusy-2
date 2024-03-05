@@ -1,7 +1,15 @@
 
+// react hooks 
 import { useEffect, useState } from "react";
+
+// redux tool for getting data from store
+import { useSelector } from "react-redux";
+
+// state of Product Reducer
+import { productSelector } from "../Redux/Reducers/productReducer";
+
+// react router
 import { Link } from "react-router-dom";
-import { useProductContext } from "../ProductContext";
 
 // required component for Order Detail and Loading spinner
 import OrderDetail from "../Component/MyOrder/OrderDetail";
@@ -14,12 +22,13 @@ import styles from "../styles/myorder.module.css";
 // render my order page
 export function MyOrder(){
 
-    // getting all order's from custom context hook
-    const {myorders}=useProductContext();
+    // getting all order's from Product Reducer
+    const {myorders} = useSelector(productSelector);
 
     // to show/hide loading spinner on the page
     const [isLoading,setLoading]=useState(true);
 
+    
     // hide the spinner after given time
     useEffect(()=>{
         setTimeout(()=>{
@@ -38,7 +47,7 @@ export function MyOrder(){
 
                 {/* page heading */}
                 <h1 className={styles.orderHeading}>
-                    MY ORDERS
+                    My Orders
                 </h1>
 
                 {/* to show message if no order in list */}
@@ -47,7 +56,7 @@ export function MyOrder(){
                         {/* message of no order */}
                         <h1>You haven't placed any order yet !!</h1>
                         {/* link to redirect to home page */}
-                        <Link to="/">!!! Continue Shopping !!!</Link>
+                        <Link to="/">!!! Start Shopping !!!</Link>
                     </>
                     :
                     // if contains order than render them one by one

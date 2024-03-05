@@ -1,5 +1,4 @@
 
-import { useAuthValue } from "../../AuthContext";
 import styles from "../../styles/navbar.module.css";
 import { Outlet, NavLink } from "react-router-dom";
 import homeIcon from "../../Images/house.png";
@@ -9,10 +8,17 @@ import signOuticon from "../../Images/logout.png";
 import orderIcon from "../../Images/order.png";
 import cartIcon from "../../Images/cart.png";
 
+// redux tools for calling actions and getting data from store
+import { useDispatch, useSelector } from "react-redux";
+// actions from Auth Reducer
+import { authSelector, removeSessionThunk } from "../../Redux/Reducers/authReducer";
 
 export default function Nav(){
-    // user's login status
-    const {isLoggedIn,signOut}=useAuthValue();
+    // for calling actions
+    const dispatch=useDispatch();
+    
+    // user's login status from redux store
+    const {isLoggedIn}=useSelector(authSelector);
 
     return(
         <>
@@ -60,7 +66,7 @@ export default function Nav(){
                                 <>
                                     <img  src={signOuticon} alt="signOut-icon"/>
                                     {/* sign out user  */}
-                                    <span onClick={signOut}>SignOut</span>
+                                    <span onClick={() => dispatch(removeSessionThunk())}>SignOut</span>
                                 </>
                             }
                         </span>

@@ -1,8 +1,7 @@
 # BuyBusy
 
 ## Introduction
-BuyBusy is an online shopping / eCommerce website built using Reactjs, Firebase database for storing data on cloud, and ContextAPI for store state management and creating functions. It allows users to sign up and sign in to their accounts, add or remove products from the cart, adjust product quantities, and place orders. User data is stored in the Firebase database, enabling users to view their purchase history anytime.
-
+BuyBusy is an online shopping / eCommerce website built using Reactjs, Firebase database for storing data on cloud, and Redux toolkit, react-router-dom. User can create their accout and add/remove products in their cart and also place order. This project saves data inside Firebase Database.
 ## Live Demo
 [Go Live to Website](#) 
 
@@ -26,7 +25,7 @@ To get started with BuyBusy on your local machine, follow these steps:
 ## Tools and Libraries
 - React.js
 - Firebase Database
-- ContextAPI
+- Redux-toolkit
 - react-router-dom
 - react-toastify
 - react-spinner

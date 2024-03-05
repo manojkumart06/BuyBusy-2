@@ -1,23 +1,17 @@
-
-// react hooks
 import { useEffect, useState } from "react";
-
-// react router
 import { useNavigate } from "react-router-dom";
 
-// custom context hook for values from product and authentication
-import {useProductContext} from "../ProductContext";
-import { useAuthValue } from "../AuthContext";
+// redux tools for calling actions and getting data from store
+import { useDispatch, useSelector } from "react-redux";
 
-// required component's 
-// single cartItem
+// actions from Auth and Product Reducers
+import { authSelector } from "../Redux/Reducers/authReducer";
+import { clearCartThunk, productSelector, purchaseAllThunk } from "../Redux/Reducers/productReducer";
+
 import CartItem from "../Component/Cart/CartItem";
 // page loader
 import Loader from "../Component/Loader/Loader";
 
-
-// css styles
-// styles from other css file
 import firstStyles from "../styles/home.module.css";
 // styles for cart.js
 import secondStyles from "../styles/cart.module.css";
@@ -29,15 +23,18 @@ import { toast } from "react-toastify";
 
 // render the cart page
 export function Cart(){
+    // for calling actions
+    const dispatch = useDispatch();
 
     // to show/hide the loading spinner on the page
     const [isLoading,setLoading]=useState(true);
 
-    // data for product from custom hook (product)
-    const {cart,total,clearCart,purchaseAll,itemInCart}=useProductContext();
     
-    // data of user from custom hook (authentication)
-    const {userLoggedIn}=useAuthValue();
+    // data of user from Auth Reducer
+    const {userLoggedIn}=useSelector(authSelector);
+
+    // data of cart items from Product Reducer
+    const {cart,total,itemInCart} = useSelector(productSelector);
 
     // to navigate to some page
     const navigate=useNavigate();
@@ -50,6 +47,7 @@ export function Cart(){
     },[]);
 
 
+
     // purchase button handler 
     function handlePurchase(){
 
@@ -60,7 +58,7 @@ export function Cart(){
         }
 
         // purchase function
-        purchaseAll();
+        dispatch(purchaseAllThunk());
         // show notification
         toast.success("Your order has been Placed!!!")
 
@@ -95,7 +93,7 @@ export function Cart(){
 
                             {/* button to empty cart */}
                             <button className={secondStyles.removeAll}
-                                    onClick={clearCart}>
+                                    onClick={() => dispatch(clearCartThunk())}>
                                 Remove All
                             </button>
                         </div>

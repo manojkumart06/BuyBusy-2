@@ -1,14 +1,19 @@
 
+// import styles 
 import styles from "../../styles/home.module.css";
+
+// import component to render a single item in the list
 import ItemCard from "./ItemCard";
-import { useProductContext } from "../../ProductContext";
+
+// getting all the product data
+import { data } from "../../Assets/data";
+
+// to show all the products
 export default function MainContent(props){
     
     // values form props to filter list
     const {search,price,category,applyFilter}=props;
     
-    // product data 
-    const {data} = useProductContext();
 
     return(
         <div className={styles.itemContainer}>

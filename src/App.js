@@ -1,10 +1,10 @@
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
-import { ProductContext } from "./ProductContext";
+
+
 
 // all the pages and component to render
-import Nav from "./Component/Navbar/Nav";
 import LandingPage from "./Pages/LandingPage";
+import Nav from "./Component/Navbar/Nav";
 import { Home } from "./Pages/Home";
 import {MyOrder} from "./Pages/MyOrder";
 import {Cart} from "./Pages/Cart";
@@ -32,14 +32,10 @@ function App() {
 
   return (
     <>
-      <AuthContext>
-        <ProductContext>
-          <RouterProvider router={router} />    
-        </ProductContext>
-      </AuthContext>
+      {/* routes */}
+        <RouterProvider router={router} />
     </>
   );
 }
 
 export default App;
-
