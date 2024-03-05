@@ -3,7 +3,7 @@
 ## Introduction
 BuyBusy is an online shopping / eCommerce website built using Reactjs, Firebase database for storing data on cloud, and Redux toolkit, react-router-dom. User can create their accout and add/remove products in their cart and also place order. This project saves data inside Firebase Database.
 ## Live Demo
-[Go Live to Website](#) 
+[Go Live to Website](https://buybustshopsite.netlify.app/) 
 
 ## Installation and Running the Code
 To get started with BuyBusy on your local machine, follow these steps:
